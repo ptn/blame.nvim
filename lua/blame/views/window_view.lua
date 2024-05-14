@@ -268,7 +268,14 @@ function WindowView:setup_keybinds(buff)
         "n",
         "show_commit",
         function()
-            self:show_full_commit()
+            if self.config.show_commit_fn then
+                local row, _ =
+                    unpack(vim.api.nvim_win_get_cursor(self.blame_window))
+                local commit = self.blamed_lines[row]
+                self.config.show_commit_fn(commit.hash)
+            else
+                self:show_full_commit()
+            end
         end,
         { buffer = buff, nowait = true, silent = true, noremap = true },
         self.config
