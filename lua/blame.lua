@@ -28,6 +28,7 @@ local formats = require("blame.formats.default_formats")
 ---@field format_fn FormatFn Function that formats the output, default: require("blame.formats.default_formats").date_message
 ---@field max_summary_width number Max width of the summary in 'date_summary' format
 ---@field commit_detail_view 'current' | 'tab' | 'vsplit' | 'split'
+---@field auto_focus Boolean Whether to give focus to the blame view or not
 ---@field show_commit_fn Function Function that opens that commit in the current line
 ---@field mappings Mappings
 local config = {
@@ -43,6 +44,7 @@ local config = {
     colors = nil,
     format_fn = formats.commit_date_author_fn,
     commit_detail_view = "vsplit",
+    auto_focus = false,
     show_commit_fn = nil,
     mappings = {
         commit_info = "i",
